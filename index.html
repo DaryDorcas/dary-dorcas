@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dary & Dorcas - Sertanejo com Alma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* BODY */
+    body {
+      background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+      color: #fff;
+      overflow-x: hidden;
+      background-image: url('img/background-pattern.png');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    /* CABEÇALHO */
+    header {
+      background: url('img/festa.png') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 4rem;
+      color: #ffcc00;
+      z-index: 1;
+      text-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffcc00; }
+      to { text-shadow: 0 0 25px #ffcc00, 0 0 35px #ffcc00; }
+    }
+
+    header p {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 10px;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    /* MENU */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(255, 204, 0, 0.3);
+      border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffcc00;
+      transform: scale(1.1);
+      text-shadow: 0 0 8px #ffcc00;
+    }
+
+    /* SESSÕES */
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-in-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #ffcc00;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+      margin: 15px auto;
+      border-radius: 5px;
+      animation: shimmer 2s infinite linear;
+    }
+
+    @keyframes shimmer {
+      from { width: 0; opacity: 0; }
+      50% { width: 80px; opacity: 1; }
+      to { width: 0; opacity: 0; }
+    }
+
+    /* BIO */
+    #bio {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .bio-card {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      flex: 1 1 300px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 204, 0, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bio-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ffcc00;
+    }
+
+    .bio-card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .bio-card img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+
+    .bio-card h3 {
+      font-size: 1.8rem;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+
+    .bio-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    /* AGENDA DE SHOWS */
+    #agenda {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+    }
+
+    .show-item {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      border: 1px solid rgba(255, 204, 0, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .show-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #ffcc00;
+    }
+
+    /* CONTATO */
+    #contato {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 204, 0, 0.4);
+    }
+
+    #contato form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #contato input, #contato textarea {
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid rgba(255, 204, 0, 0.4);
+      transition: border 0.3s;
+    }
+
+    #contato input:focus, #contato textarea:focus {
+      border-color: #ffcc00;
+      outline: none;
+      box-shadow: 0 0 10px #ffcc00;
+    }
+
+    #contato button {
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #ffcc00;
+      color: #000;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    #contato button:hover {
+      background: #e6b800;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ffcc00;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0d0d0d;
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      border-top: 1px solid rgba(255, 204, 0, 0.3);
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: text-shadow 0.3s;
+    }
+
+    footer a:hover {
+      text-shadow: 0 0 8px #ffcc00;
+    }
+
+    /* ANIMAÇÃO DE FUMAÇA */
+    .smoke {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: drift 8s infinite;
+    }
+
+    @keyframes drift {
+      0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+      50% { transform: translateY(-100px) translateX(50px); opacity: 0.2; }
+      100% { transform: translateY(-200px) translateX(0); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU -->
+<nav>
+  <ul>
+    <li><a href="#bio">Sobre</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- CABEÇALHO -->
+<header>
+  <div class="smoke" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="smoke" style="left: 70%; animation-delay: 2s;"></div>
+  <h1>Dary & Dorcas</h1>
+  <p>Sertanejo que abraça sua família</p>
+</header>
+
+<!-- BIO -->
+<section id="bio">
+  <h2>Conheça a dupla</h2>
+  <div class="bio-card">
+    <img src="img/dary.png" alt="Dary">
+    <h3>Dary</h3>
+    <p>Dary traz a força da tradição sertaneja com uma voz que emociona e conecta todos no bar. Sempre pronta para animar o público!</p>
+  </div>
+  <div class="bio-card">
+    <img src="img/dorcas.png" alt="Dorcas">
+    <h3>Dorcas</h3>
+    <p>Dorcas mistura ternura e energia no palco. Sua presença transforma cada apresentação em um momento familiar e acolhedor.</p>
+  </div>
+</section>
+
+<!-- AGENDA DE SHOWS -->
+<section id="agenda">
+  <h2>Agenda de Shows</h2>
+  <div class="show-item">Data: 10/11/2023 - Local: Bar do Sertão</div>
+  <div class="show-item">Data: 20/11/2023 - Local: Festa da Família</div>
+  <div class="show-item">Data: 30/11/2023 - Local: Festival Sertanejo</div>
+  <div class="show-item">Data: 15/12/2023 - Local: Natal Sertanejo</div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <h2>Fale com a gente</h2>
+  <form>
+    <input type="text" placeholder="Nome" required>
+    <input type="email" placeholder="Email" required>
+    <input type="text" placeholder="Assunto" required>
+    <textarea rows="5" placeholder="Mensagem" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <p style="text-align:center; margin-top:20px;">
+    WhatsApp: <a href="https://wa.me/5511999999999">(DDD) XXXXX-XXXX</a> | 
+    Instagram: <a href="https://instagram.com/daryedorcas">@daryedorcas</a> | 
+    Email: <a href="mailto:contato@daryedorcas.com">contato@daryedorcas.com</a>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Dary & Dorcas. Todos os direitos reservados.
+</footer>
+
+<script>
+  // FORMULARIO SIMPLES
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Mensagem enviada! Entraremos em contato em breve.');
+    form.reset();
+  });
+
+  // ANIMAÇÃO DE ENTRADA DAS SEÇÕES
+  const sections = document.querySelectorAll("section");
+  const revealOnScroll = () => {
+    const windowHeight = window.innerHeight;
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if(sectionTop < windowHeight - 100){
+        section.classList.add("visible");
+      }
+    });
+  };
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+</script>
+
+</body>
+</html>
