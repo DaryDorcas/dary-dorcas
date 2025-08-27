@@ -14,16 +14,24 @@
       font-family: 'Roboto', sans-serif;
     }
 
-    /* BODY */
-   body {
-  background-color: #0d0d0d; /* cor de fundo preta */
-  background-image: url('img/background-pattern.png');
-  background-size: cover;
-  background-attachment: scroll;
-  color: #fff;
-  overflow-x: hidden;
-}
+    /* HTML E BODY */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d; /* fundo preto */
+      color: #fff;
+    }
 
+    /* BODY */
+    body {
+      background-image: url('img/background-pattern.png'); /* opcional */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: scroll; /* scroll para celular */
+      overflow-x: hidden;
+    }
 
     /* CABEÇALHO */
     header {
@@ -86,7 +94,7 @@
       gap: 2rem;
       padding: 1rem;
     }
-/* SOBRE-AGENDA-CONTATO*/
+
     nav ul li a {
       color: #fff;
       text-decoration: none;
@@ -178,7 +186,7 @@
       transform: scale(1.1);
       filter: brightness(1.1);
     }
-/*Nome Dary-Dorcas*/
+
     .bio-card h3 {
       font-size: 1.8rem;
       color: #ffcc00;
@@ -265,7 +273,17 @@
       box-shadow: 0 0 15px #ffcc00;
     }
 
-    /* FOOTER - TODOS OS DIREITOS RESERVADOS*/
+    /* LINKS DE CONTATO */
+    .contact-links a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    .contact-links a:hover {
+      text-shadow: 0 0 8px #ffcc00;
+    }
+
+    /* FOOTER */
     footer {
       background: #0d0d0d;
       text-align: center;
@@ -298,6 +316,23 @@
       0% { transform: translateY(0) translateX(0); opacity: 0.5; }
       50% { transform: translateY(-100px) translateX(50px); opacity: 0.2; }
       100% { transform: translateY(-200px) translateX(0); opacity: 0; }
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 3rem;
+      }
+      header p {
+        font-size: 1.2rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      section {
+        padding: 60px 15px;
+      }
     }
   </style>
 </head>
@@ -354,7 +389,7 @@
     <textarea rows="5" placeholder="Mensagem" required></textarea>
     <button type="submit">Enviar</button>
   </form>
-  <p style="text-align:center; margin-top:20px;">
+  <p class="contact-links" style="text-align:center; margin-top:20px;">
     WhatsApp: <a href="https://wa.me/5511999999999">(DDD) XXXXX-XXXX</a> | 
     Instagram: <a href="https://instagram.com/daryedorcas">@daryedorcas</a> | 
     Email: <a href="mailto:contato@daryedorcas.com">contato@daryedorcas.com</a>
@@ -392,4 +427,3 @@
 
 </body>
 </html>
-
